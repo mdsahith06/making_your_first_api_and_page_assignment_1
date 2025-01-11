@@ -14,7 +14,37 @@ Requirements:
    b. A cheerful message based on the current day of the week.
 
 Example Responses:
-- For Monday:
+- For Monday:app.get("/assistant/greet",(req,res)=>{
+  console.log('Received GET request at /assistant/greet endpoint');
+  const name = req.query.name;
+  console.log(`Query parameter: name = ${name}`);
+  const day = new Date().getDay();
+  console.log(`Current day of the week: ${day}`);
+  if(day==1){
+    let obj = {
+      "welcomeMessage": `Hello, ${name}! Welcome to our assistant app!`,
+      "dayMessage": "Happy Monday! Start your week with energy!"
+    }
+    console.log('Sending response for Monday');
+    return res.send(obj);
+  }
+  else if(day==5){
+    let obj = {
+      "welcomeMessage": `Hello, ${name}! Welcome to our assistant app!`,
+      "dayMessage": "It's Friday! The weekend is near!"
+    }
+    console.log('Sending response for Friday');
+    return res.send(obj);
+  }
+  else{
+    let obj = {
+      "welcomeMessage": `Hello, ${name}! Welcome to our assistant app!`,
+      "dayMessage": "Have a wonderful day!"
+    }
+    console.log('Sending response for other days');
+    return res.send(obj);
+  }
+})
   {
     "welcomeMessage": "Hello, John! Welcome to our assistant app!",
     "dayMessage": "Happy Monday! Start your week with energy!"
